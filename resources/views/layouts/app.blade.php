@@ -23,14 +23,7 @@
 
 <body class="min-h-screen font-sans antialiased bg-secondary-100">
     <div class="flex h-full">
-
-        <div class="flex flex-col flex-1 min-w-0 overflow-hidden lg:pl-20">
-            <div class="relative z-0 flex flex-1 overflow-hidden">
-                <main class="relative z-0 flex-1 focus:outline-none order-last">
-                    {{ $slot }}
-                </main>
-            </div>
-        </div>
+        {{ $slot }}
     </div>
     @stack('scripts')
 </body>
