@@ -35,6 +35,12 @@ class LoginController extends Controller
 
         Auth::login($user, $request->boolean('remember'));
 
+        // Note: This is the prefered way to authnticate users in Laravel.
+        // Auth::attempt([
+        //     'email' => $request->email,
+        //     'password' => $request->input('password'),
+        // ], $request->boolean('remember'));
+
         // 3. redirect to dashboard
         return redirect()->route('dashboard');
     }
