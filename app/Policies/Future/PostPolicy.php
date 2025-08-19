@@ -1,14 +1,21 @@
 <?php
 
-namespace App\Policies;
+namespace App\Policies\Future;
 
 use App\Models\Post;
 use App\Models\User;
 
 class PostPolicy
 {
+    // 1. Create a post (is_published = false)
+    // 2. Editor: he can publish
+    // 3. Who can view? যে লিখেছে ওই পোস্ট অথবা এডিটর
+
     public function view(?User $user, Post $post): bool
     {
+        // if login,
+        // $user's own post or if the user has 'editor' role
+        // then he can view
         return $post->is_published
             || ($user && ($user->id === $post->user_id || $user->role === 'editor'));
     }

@@ -4,21 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Support\Facades\Gate;
 
-class PostController extends Controller implements HasMiddleware
+class PostController extends Controller
 {
-    /**
-     * Get the middleware that should be assigned to the controller.
-     */
-    public static function middleware(): array
-    {
-        return [
-            'auth',
-        ];
-    }
-
     public function index()
     {
         $user = auth()->user();
@@ -65,6 +54,9 @@ class PostController extends Controller implements HasMiddleware
 
     public function edit(Post $post)
     {
+        // ইউজার তার নিজের পোস্ট এডিট করতে পারবে
+        // ইউজার যদি Editor হয়, তবে এডিট করতে পারবে
+
         Gate::authorize('update', $post);
 
         return view('posts.edit', compact('post'));
