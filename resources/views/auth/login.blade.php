@@ -44,4 +44,15 @@
             </x-primary-button>
         </div>
     </form>
+
+    <div class="mt-8">
+        <div class="relative my-6">
+            <div class="absolute inset-0 flex items-center" aria-hidden="true">
+                <div class="w-full border-t border-gray-200 dark:border-gray-700"></div>
+            </div>
+            <div class="relative flex justify-center">
+                <span class="bg-white dark:bg-gray-900 px-3 text-xs font-medium tracking-wide text-gray-500 dark:text-gray-400 uppercase">Or continue with</span>
+            </div>
+        </div>
+    </div>
 </x-guest-layout>
