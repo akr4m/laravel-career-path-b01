@@ -1,0 +1,38 @@
+body {
+    font-family: sans-serif;
+}
+
+h1 {
+    color: red;
+    margin-bottom: 1px;
+}
+
+p {
+    color: #000333;
+    margin-bottom: 1px;
+}
+
+.customer-name {
+    color: tomato;
+    margin-bottom: 1px;
+}
+
+table {
+    margin-top: 12px;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    boder: 1px solid #999;
+    padding: 8px;
+}
+
+th {
+    background-color: #eee;
+}
+
+.page-break {
+    page-break-before: always;
+}
