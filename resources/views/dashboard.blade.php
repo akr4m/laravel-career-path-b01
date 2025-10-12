@@ -11,6 +11,8 @@
 
             <!-- @livewire('counter') -->
 
+            @livewire('test-event')
+
             <div class="space-y-4">
                 <livewire:create-book />
                 <livewire:book-index />

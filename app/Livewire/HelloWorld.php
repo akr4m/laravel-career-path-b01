@@ -15,14 +15,14 @@ class HelloWorld extends Component
 
     public function mount($firstName, $lastName)
     {
-        Log::info('This is from `MOUNT` at '.now());
+        // Log::info('This is from `MOUNT` at '.now());
 
         $this->name = $firstName.' '.$lastName;
     }
 
     public function render()
     {
-        Log::info('This is from `RENDER` at '.now());
+        // Log::info('This is from `RENDER` at '.now());
 
         return view('livewire.hello-world');
     }

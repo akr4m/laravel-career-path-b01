@@ -3,13 +3,21 @@
 namespace App\Livewire;
 
 use App\Models\Book;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class BookIndex extends Component
 {
-    protected $listeners = [
-        'book-created' => '$refresh',
-    ];
+    public $books;
+
+    public function mount()
+    {
+        $this->books = Book::latest()->get();
+    }
+
+    // protected $listeners = [
+    //     'book-created' => '$refresh',
+    // ];
 
     // public function getListeners()
     // {
@@ -18,12 +26,26 @@ class BookIndex extends Component
     //     ];
     // }
 
+    #[On('book-created')]
+    public function updateBookList($bookId)
+    {
+        $newBook = Book::find($bookId);
+
+        $this->books->prepend($newBook);
+    }
+
+    public function deleteBook($bookId)
+    {
+        $book = Book::find($bookId);
+
+        if ($book) {
+            $book->delete();
+            $this->books = $this->books->except($bookId);
+        }
+    }
+
     public function render()
     {
-        $books = Book::latest()->get();
-
-        return view('livewire.book-index', [
-            'books' => $books,
-        ]);
+        return view('livewire.book-index');
     }
 }

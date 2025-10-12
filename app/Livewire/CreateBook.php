@@ -2,33 +2,18 @@
 
 namespace App\Livewire;
 
-use App\Models\Book;
-use Livewire\Attributes\Validate;
+use App\Livewire\Forms\BookForm;
 use Livewire\Component;
 
 class CreateBook extends Component
 {
-    #[Validate('required|string|min:3|max:255')]
-    public $title = '';
-
-    #[Validate('required|string|min:3|max:255')]
-    public $author = '';
+    public BookForm $form;
 
     public function createBook()
     {
-        $this->validate();
+        $book = $this->form->create();
 
-        sleep(5);
-
-        Book::create([
-            'title' => $this->title,
-            'author' => $this->author,
-        ]);
-
-        $this->title = '';
-        $this->author = '';
-
-        $this->dispatch('book-created');
+        $this->dispatch('book-created', $book->id)->to(BookIndex::class);
     }
 
     public function render()
