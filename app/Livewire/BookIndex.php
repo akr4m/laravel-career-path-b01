@@ -4,15 +4,29 @@ namespace App\Livewire;
 
 use App\Models\Book;
 use Livewire\Attributes\On;
+use Livewire\Attributes\Url;
 use Livewire\Component;
 
 class BookIndex extends Component
 {
     public $books;
 
+    #[Url]
+    public $search = '';
+
     public function mount()
     {
-        $this->books = Book::latest()->get();
+        if ($this->search) {
+            $this->books = Book::query()
+                ->whereAny([
+                    'title',
+                    'author',
+                ], 'like', "%{$this->search}%")
+                ->latest()
+                ->get();
+        } else {
+            $this->books = Book::latest()->get();
+        }
     }
 
     // protected $listeners = [
